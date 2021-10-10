@@ -58,7 +58,6 @@
 									<?php if (!empty($barang)) {
 										$i = 1;
 										foreach ($barang as $row) : ?>
-											<?php var_dump($row) ?>
 											<tr>
 												<td><?= $i++; ?></td>
 												<td><?= $row['id']; ?></td>
@@ -66,7 +65,7 @@
 												<td><?= $row['jenis_barang']; ?></td>
 												<!-- <td>pake if else nanti</td> -->
 												<td><?= $row['stok']; ?></td>
-												<td><?= $row['satuan_barang']; ?></td>
+												<td><?= $row['satuan_barang'] ?? ""; ?></td>
 												<td><?php echo ($row['stok'] < 50 ? "Stok Rendah" : "" ) ?></td>
 												<td><?= $row['tanggal'] ?? "" ?></td>
 												<td align="center">

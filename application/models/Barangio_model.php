@@ -25,16 +25,17 @@ class Barangio_Model extends CI_Model
 	public function getDataBarangNoType()
 	{
 		$query = "SELECT
-					barang_io.id,
-					barang_io.nama_barang,
-					barang_io.merk_barang,
-					barang_io.stok,
-					jenis.jenis_barang,
-					satuan.satuan_barang
+					b.id,
+					b.nama_barang,
+					b.merk_barang,
+					b.stok,
+					b.tanggal,
+					j.jenis_barang,
+					s.satuan_barang
 					FROM
-					barang_io
-					LEFT JOIN jenis ON barang_io.kode_jenis = jenis.kode_jenis
-					LEFT JOIN satuan ON barang_io.kode_satuan = satuan.kode_satuan";
+					barang_io as b
+					JOIN jenis AS j ON (b.kode_jenis = j.kode_jenis)
+					JOIN satuan AS s ON (b.kode_satuan = s.kode_satuan)";
 		return $this->db->query($query)->result_array();
 	}
 
@@ -44,8 +45,8 @@ class Barangio_Model extends CI_Model
 			"nama_barang" => $this->input->post('nama_barang', true),
 			"merk_barang" => $this->input->post('merk_barang', true),
 			"stok" => $this->input->post('stok', true),
-			"kode_jenis" => $this->input->post('satuan', true),
-			"kode_satuan" => $this->input->post('jenis', true),
+			"kode_jenis" => $this->input->post('jenis', true),
+			"kode_satuan" => $this->input->post('satuan', true),
 			"tipe" => $this->input->post('tipe', true)
 		];
 		return $this->db->insert('barang_io', $data);
@@ -57,8 +58,8 @@ class Barangio_Model extends CI_Model
 			"nama_barang" => $this->input->post('nama_barang', true),
 			"merk_barang" => $this->input->post('merk_barang', true),
 			"stok" => $this->input->post('stok', true),
-			"kode_jenis" => $this->input->post('satuan', true),
-			"kode_satuan" => $this->input->post('jenis', true),
+			"kode_jenis" => $this->input->post('jenis', true),
+			"kode_satuan" => $this->input->post('satuan', true),
 			"tipe" => $this->input->post('tipe', true)
 		];
 		$this->db->where('id', $this->input->post('id'));
