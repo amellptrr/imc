@@ -50,6 +50,7 @@
 										<th>Stok</th>
 										<th>Satuan Barang</th>
 										<th>Keterangan</th>
+										<th>Tanggal</th>
 										<th></th>
 									</tr>
 								</thead>
@@ -66,6 +67,7 @@
 												<td><?= $row['stok']; ?></td>
 												<td><?= $row['satuan_barang']; ?></td>
 												<td><?php echo ($row['stok'] < 50 ? "Stok Rendah" : "" ) ?></td>
+												<td><?= $row['tanggal'] ?? "" ?></td>
 												<td align="center">
 													<button type="button" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square"></i></button>
 													<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
@@ -199,10 +201,10 @@
 	$(document).ready(function() {
 		// Create date inputs
 		minDate = new DateTime($('#min'), {
-			format: 'L'
+			format: 'YYYY-MM-DD HH:MM:SS'
 		});
 		maxDate = new DateTime($('#max'), {
-			format: 'L'
+			format: 'YYYY-MM-DD HH:MM:SS'
 		});
 
 		// DataTables initialisation
