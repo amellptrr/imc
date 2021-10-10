@@ -98,4 +98,13 @@ class Barangio extends CI_Controller
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect(base_url('barangio'));
     }
+
+	public function print(){
+		$minDate = (isset($_GET['min']) ? $_GET['min'] . " 00:00:00" : "");
+		$maxDate = (isset($_GET['max']) ? $_GET['max'] . " 23:59:59": "");
+		$type = (isset($_GET['type']) ? $_GET['type'] : null);
+		$data['barang'] = $this->Barangio_model->print($minDate,$maxDate,$type);
+		$data['title'] = ($type == null ? '' : $type);
+		$this->load->view('data/print', $data);
+	}
 }

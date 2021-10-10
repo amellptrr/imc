@@ -15,7 +15,8 @@ class Barangio_Model extends CI_Model
 					id,
 					nama_barang,
 					merk_barang,
-					stok
+					stok,
+					tanggal
 					FROM
 					barang_io
 				  	WHERE tipe = '$type'";
@@ -36,6 +37,28 @@ class Barangio_Model extends CI_Model
 					barang_io as b
 					JOIN jenis AS j ON (b.kode_jenis = j.kode_jenis)
 					JOIN satuan AS s ON (b.kode_satuan = s.kode_satuan)";
+		return $this->db->query($query)->result_array();
+	}
+
+	public function print($min,$max,$type)
+	{
+		$query = "SELECT
+					b.id,
+					b.nama_barang,
+					b.merk_barang,
+					b.stok,
+					b.tanggal,
+					j.jenis_barang,
+					s.satuan_barang
+					FROM
+					barang_io as b
+					JOIN jenis AS j ON (b.kode_jenis = j.kode_jenis)
+					JOIN satuan AS s ON (b.kode_satuan = s.kode_satuan)
+					WHERE b.tanggal BETWEEN '$min' AND '$max'
+					";
+		if ($type != null){
+			$query = $query . " AND tipe = '$type'";
+		}
 		return $this->db->query($query)->result_array();
 	}
 

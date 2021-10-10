@@ -33,8 +33,8 @@
         </a>
         <ul class="treeview-menu">
           <li><a href="<?= base_url('Stok_barang') ?>"><i class="fa fa-circle-o"></i> Stok Barang</a></li>
-          <li><a href="<?= base_url('Surat_keluar') ?>"><i class="fa fa-circle-o"></i> Surat Keluar</a></li>
-          <li><a href="<?= base_url('Surat_masuk') ?>"><i class="fa fa-circle-o"></i> Surat Masuk</a></li>
+          <li><a href="<?= base_url('barangio') . "?type=masuk" ?>"><i class="fa fa-circle-o"></i> Data Barang Masuk</a></li>
+          <li><a href="<?= base_url('barangio') . "?type=keluar" ?>"><i class="fa fa-circle-o"></i> Data Barang Keluar</a></li>
         </ul>
       </li>
       <li>

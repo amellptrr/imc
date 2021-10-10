@@ -25,6 +25,9 @@
 							<button type="button" class="btn btn-success btn-sm pull-right"><i class="fa fa-plus">
 									<span><b>Tambah Data</b></span>
 								</i></button>
+							<a href="/barangio/print" class="btn btn-success btn-sm pull-right print-btn"><i class="fa fa-print">
+									<span><b>Cetak</b></span>
+								</i></a>
 						</div>
 						<!-- /.box-header -->
 						<div class="box-body">
@@ -66,7 +69,7 @@
 												<!-- <td>pake if else nanti</td> -->
 												<td><?= $row['stok']; ?></td>
 												<td><?= $row['satuan_barang'] ?? ""; ?></td>
-												<td><?php echo ($row['stok'] < 50 ? "Stok Rendah" : "" ) ?></td>
+												<td><?php echo ($row['stok'] < 50 ? "Stok Rendah" : "") ?></td>
 												<td><?= $row['tanggal'] ?? "" ?></td>
 												<td align="center">
 													<a href="<?= base_url(); ?>barangio/edit_data/<?= $row['id'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square"></i></a>
@@ -184,7 +187,7 @@
 		function(settings, data, dataIndex) {
 			var min = minDate.val();
 			var max = maxDate.val();
-			var date = new Date(data[4]);
+			var date = new Date(data[7]);
 
 			if (
 				(min === null && max === null) ||
@@ -201,18 +204,28 @@
 	$(document).ready(function() {
 		// Create date inputs
 		minDate = new DateTime($('#min'), {
-			format: 'YYYY-MM-DD HH:MM:SS'
+			format: 'YYYY-MM-DD'
 		});
 		maxDate = new DateTime($('#max'), {
-			format: 'YYYY-MM-DD HH:MM:SS'
+			format: 'YYYY-MM-DD'
 		});
 
 		// DataTables initialisation
 		var table = $('#dataTableBarang').DataTable();
-
 		// Refilter the table
+		let min = null;
+		let max = null;
+		$('#min').on('change',function(){
+			min = $(this).val();
+		});
+		$('#max').on('change',function(){
+			max = $(this).val();
+		});
 		$('#min, #max').on('change', function() {
 			table.draw();
+			let type = '<?php echo (isset($_GET['type']) ? "type=" . $_GET['type'] . "&" : '') ?>';
+			let printUrl = "/barangio/print?" + type + `min=${min}&max=${max}`
+			$('.print-btn').attr('href', printUrl)
 		});
 	});
 </script>
