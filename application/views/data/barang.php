@@ -80,40 +80,6 @@
 									} ?>
 								</tbody>
 							</table>
-
-							<!-- <table id="example1" class="table table-bordered table-striped">
-								<thead>
-									<tr>
-										<th>No.</th>
-										<th>ID Barang</th>
-										<th>Nama Barang</th>
-										<th>Jenis Barang</th>
-										<th>Stok</th>
-										<th>Satuan Barang</th>
-										<th></th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php if (!empty($barang)) {
-										$i = 1;
-										foreach ($barang as $row) : ?>
-											<tr>
-												<td><?= $i++; ?></td>
-												<td><?= $row['id_barang']; ?></td>
-												<td><?= $row['nama_barang']; ?></td>
-												<td><?= $row['jenis_barang']; ?></td>
-												<td>pake if else nanti</td>
-												<td><?= $row['stok']; ?></td>
-												<td><?= $row['satuan_barang']; ?></td>
-												<td align="center">
-													<button type="button" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square"></i></button>
-													<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
-												</td>
-											</tr>
-									<?php endforeach;
-									} ?>
-								</tbody>
-							</table> -->
 						</div>
 						<!-- /.box-body -->
 					</div>
@@ -215,10 +181,10 @@
 		// Refilter the table
 		let min = null;
 		let max = null;
-		$('#min').on('change',function(){
+		$('#min').on('change', function() {
 			min = $(this).val();
 		});
-		$('#max').on('change',function(){
+		$('#max').on('change', function() {
 			max = $(this).val();
 		});
 		$('#min, #max').on('change', function() {

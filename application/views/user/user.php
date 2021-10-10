@@ -22,19 +22,19 @@
 
             <h3 class="box-title"> Profile</h3>
 
-            <button type="button" class="btn btn-warning btn-xs pull-right"><i class="fa fa-pencil-square-o"></i>
+            <a href="/user/edit_user/<?php echo $_SESSION['id_user'] ?>?type=profile" class="btn btn-warning btn-xs pull-right"><i class="fa fa-pencil-square-o"></i>
               <span>Edit</span>
-            </button>
+            </a>
           </div>
           <!-- /.box-header -->
           <div class="box-body">
             <dl class="dl-horizontal">
               <dt>Nama</dt>
-              <dd>Adawiyyah Latifah</dd>
+              <dd><?php echo $user['nama_lengkap'] ?></dd>
               <dt>Email</dt>
-              <dd>admin@admin.com</dd>
-              <dt>Status</dt>
-              <dd>Aktif</dd>
+              <dd><?php echo $user['email'] ?></dd>
+              <dt>Role</dt>
+              <dd><?php echo $user['role'] ?></dd>
             </dl>
           </div>
           <!-- /.box-body -->

@@ -29,10 +29,19 @@ class User extends CI_Controller
 	public function index()
 	{
 		$data['judul'] = 'Profile';
-
+		$data['user'] = $this->User_model->getUser($_SESSION['email']);
 		$this->load->view('template/header', $data);
 		$this->load->view('template/sidebar');
 		$this->load->view('user/user', $data);
+	}
+
+	public function list()
+	{
+		$data['judul'] = 'List User';
+		$data['user'] = $this->User_model->getAllUser();
+		$this->load->view('template/header', $data);
+		$this->load->view('template/sidebar');
+		$this->load->view('user/list', $data);
 	}
 
 	public function login()
@@ -40,6 +49,7 @@ class User extends CI_Controller
 		$data = $this->input;
 		$modelData = $this->User_model->getUser($data->post('email'));
 		if ($data->post('password') == $modelData['password']) {
+			$_SESSION['id_user'] = $modelData['id_user'];
 			$_SESSION['nama_lengkap'] = $modelData['nama_lengkap'];
 			$_SESSION['email'] = $modelData['email'];
 			$_SESSION['no_hp'] = $modelData['no_hp'];
@@ -61,4 +71,51 @@ class User extends CI_Controller
 		echo "<script type='text/javascript'>window.top.location='$url';</script>";
 		exit;
 	}
+
+	public function tambah_user()
+    {
+        $data['judul'] = 'Tambah Data User';
+		$this->form_validation->set_rules('nama_lengkap','nama_lengkap','required');
+		$this->form_validation->set_rules('email','email','required');
+		$this->form_validation->set_rules('no_hp','no_hp','required');
+		$this->form_validation->set_rules('password','password','required');
+		if ($_SESSION['role'] == "Admin"){
+			$this->form_validation->set_rules('role','role','required');
+		}
+		if ($this->form_validation->run() == false) {
+            $this->load->view('template/header', $data);
+            $this->load->view('template/sidebar');
+            $this->load->view('data/tambah_user', $data);
+        } else {
+            $this->User_model->tambahUser();
+            $this->session->set_flashdata('flash', 'Ditambahkan');
+            redirect(base_url('user/list'));
+        }
+    }
+
+	public function edit_user($id)
+    {
+        $data['judul'] = 'Edit Data User';
+		$modelData = $this->User_model->getUserById($id);
+		$data['user'] = $modelData;
+		$this->form_validation->set_rules('nama_lengkap','nama_lengkap','required');
+		$this->form_validation->set_rules('email','email','required');
+		$this->form_validation->set_rules('no_hp','no_hp','required');
+		$this->form_validation->set_rules('password','password','required');
+		if ($_SESSION['role'] == "Admin"){
+			$this->form_validation->set_rules('role','role','required');
+		}
+		if ($this->form_validation->run() == false) {
+            $this->load->view('template/header', $data);
+            $this->load->view('template/sidebar');
+            $this->load->view('data/edit_user', $data);
+        } else {
+            $this->User_model->editUser($id);
+            $this->session->set_flashdata('flash', 'Ditambahkan');
+			if ($_SESSION['role'] != "Admin"){
+				return redirect(base_url('user'));
+			}
+            return redirect(base_url('user/list'));
+        }
+    }
 }

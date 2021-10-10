@@ -39,9 +39,14 @@
       </li>
       <li>
         <a href="<?= base_url('user') ?>">
-          <i class="fa fa-user-circle"></i> <span>Manajemen User</span>
+          <i class="fa fa-user-circle"></i> <span>Profil</span>
+        </a>
+			<?php if ($_SESSION['role'] == 'Admin'): ?>
+				<a href="<?= base_url('user/list') ?>">
+          <i class="fa fa-user-circle"></i> <span>List User</span>
         </a>
       </li>
+			<?php endif; ?>
     </ul>
   </section>
   <!-- /.sidebar -->
