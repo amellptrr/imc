@@ -199,10 +199,10 @@
 	$(document).ready(function() {
 		// Create date inputs
 		minDate = new DateTime($('#min'), {
-			format: 'MMMM Do YYYY'
+			format: 'L'
 		});
 		maxDate = new DateTime($('#max'), {
-			format: 'MMMM Do YYYY'
+			format: 'L'
 		});
 
 		// DataTables initialisation
