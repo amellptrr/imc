@@ -36,7 +36,7 @@
         </ul>
       </li>
       <li>
-        <a href="<?= base_url('user/user.php') ?>">
+        <a href="<?= base_url('user') ?>">
           <i class="fa fa-user-circle"></i> <span>Manajemen User</span>
         </a>
       </li>

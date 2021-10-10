@@ -1,3 +1,8 @@
+<?php
+	if (count($_SESSION) < 2){
+		echo '<script type="text/javascript">window.location.href = "login.php";</script>';
+	} 
+?>
 <!DOCTYPE html>
 <html>
 
@@ -72,13 +77,13 @@
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-at"> <span class="hidden-xs"><b>Adawiyyah Latifah</b></span></i>
+                <i class="fa fa-at"> <span class="hidden-xs"><b><?php echo (isset($_SESSION['nama_lengkap']) ? $_SESSION['nama_lengkap'] : "owakowakwao") ?></b></span></i>
               </a>
               <ul class="dropdown-menu">
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <a href="<?= base_url('User') ?>" class="btn btn-default btn-flat">Setting</a>
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="/user/logout" class="btn btn-default btn-flat">Sign out</a>
                 </li>
               </ul>
             </li>
