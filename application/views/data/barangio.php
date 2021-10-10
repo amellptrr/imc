@@ -22,9 +22,9 @@
 					<div class="box">
 						<div class="box-header">
 							<h3 class="box-title">Data Barang</h3>
-							<button type="button" class="btn btn-success btn-sm pull-right"><i class="fa fa-plus">
+							<a href="/barangio/tambah_data" class="btn btn-success btn-sm pull-right"><i class="fa fa-plus">
 									<span><b>Tambah Data</b></span>
-								</i></button>
+								</i></a>
 						</div>
 						<!-- /.box-header -->
 						<div class="box-body">
@@ -46,9 +46,8 @@
 										<th>No.</th>
 										<th>ID Barang</th>
 										<th>Nama Barang</th>
-										<th>Jenis Barang</th>
+										<th>Merk Barang</th>
 										<th>Stok</th>
-										<th>Satuan Barang</th>
 										<th>Keterangan</th>
 										<th>Tanggal</th>
 										<th></th>
@@ -62,11 +61,10 @@
 												<td><?= $i++; ?></td>
 												<td><?= $row['id']; ?></td>
 												<td><?= $row['nama_barang']; ?></td>
-												<td><?= $row['jenis_barang']; ?></td>
+												<td><?= $row['merk_barang']; ?></td>
 												<!-- <td>pake if else nanti</td> -->
 												<td><?= $row['stok']; ?></td>
-												<td><?= $row['satuan_barang']; ?></td>
-												<td><?php echo ($row['stok'] < 50 ? "Stok Rendah" : "" ) ?></td>
+												<td><?php echo ($row['stok'] < 50 ? "Stok Rendah" : "") ?></td>
 												<td><?= $row['tanggal'] ?? "" ?></td>
 												<td align="center">
 													<a href="<?= base_url(); ?>barangio/edit_data/<?= $row['id'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square"></i></a>
@@ -77,40 +75,6 @@
 									} ?>
 								</tbody>
 							</table>
-
-							<!-- <table id="example1" class="table table-bordered table-striped">
-								<thead>
-									<tr>
-										<th>No.</th>
-										<th>ID Barang</th>
-										<th>Nama Barang</th>
-										<th>Jenis Barang</th>
-										<th>Stok</th>
-										<th>Satuan Barang</th>
-										<th></th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php if (!empty($barang)) {
-										$i = 1;
-										foreach ($barang as $row) : ?>
-											<tr>
-												<td><?= $i++; ?></td>
-												<td><?= $row['id_barang']; ?></td>
-												<td><?= $row['nama_barang']; ?></td>
-												<td><?= $row['jenis_barang']; ?></td>
-												<td>pake if else nanti</td>
-												<td><?= $row['stok']; ?></td>
-												<td><?= $row['satuan_barang']; ?></td>
-												<td align="center">
-													<button type="button" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square"></i></button>
-													<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
-												</td>
-											</tr>
-									<?php endforeach;
-									} ?>
-								</tbody>
-							</table> -->
 						</div>
 						<!-- /.box-body -->
 					</div>

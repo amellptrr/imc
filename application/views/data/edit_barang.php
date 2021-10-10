@@ -25,7 +25,7 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="POST" action="edit_jenis">
+                    <form role="form" method="POST" action="edit_barang">
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="kode_jenis"></label>

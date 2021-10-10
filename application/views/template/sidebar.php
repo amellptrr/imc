@@ -18,6 +18,8 @@
         </a>
         <ul class="treeview-menu">
           <li><a href="<?= base_url('Barang') ?>"><i class="fa fa-circle-o"></i> Data Barang</a></li>
+          <li><a href="<?= base_url('barangio') . "?type=masuk" ?>"><i class="fa fa-circle-o"></i> Data Barang Masuk</a></li>
+          <li><a href="<?= base_url('barangio') . "?type=keluar" ?>"><i class="fa fa-circle-o"></i> Data Barang Keluar</a></li>
           <li><a href="<?= base_url('Jenis') ?>"><i class="fa fa-circle-o"></i> Data Jenis</a></li>
           <li><a href="<?= base_url('Satuan') ?>"><i class="fa fa-circle-o"></i> Data Satuan</a></li>
         </ul>

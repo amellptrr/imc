@@ -9,7 +9,7 @@ class Barang_Model extends CI_Model
         $this->load->database();
     }
 
-    public function getDataBarang()
+    public function getDataBarang($type)
     {
         $query = "SELECT `barang`.*, `jenis`.`jenis_barang`, `satuan`.`satuan_barang`
                   FROM `barang`
@@ -17,7 +17,10 @@ class Barang_Model extends CI_Model
                   ON `barang`.`kode_jenis` = `jenis`.`kode_jenis`
                   JOIN `satuan`
                   ON `barang`.`kode_satuan` = `satuan`.`kode_satuan`
+				  WHERE `barang`.tipe = '$type'
                   ";
         return $this->db->query($query)->result_array();
     }
+
+	
 }
