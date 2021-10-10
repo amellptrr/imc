@@ -58,6 +58,7 @@
 									<?php if (!empty($barang)) {
 										$i = 1;
 										foreach ($barang as $row) : ?>
+											<?php var_dump($row) ?>
 											<tr>
 												<td><?= $i++; ?></td>
 												<td><?= $row['id']; ?></td>

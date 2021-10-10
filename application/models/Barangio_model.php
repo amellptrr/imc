@@ -12,17 +12,13 @@ class Barangio_Model extends CI_Model
 	public function getDataBarang($type)
 	{
 		$query = "SELECT
-					barang_io.id,
-					barang_io.nama_barang,
-					barang_io.merk_barang,
-					barang_io.stok,
-					jenis.jenis_barang,
-					satuan.satuan_barang
+					id,
+					nama_barang,
+					merk_barang,
+					stok
 					FROM
 					barang_io
-					LEFT JOIN jenis ON barang_io.kode_jenis = jenis.kode_jenis
-					LEFT JOIN satuan ON barang_io.kode_satuan = satuan.kode_satuan
-				  WHERE tipe = '$type'";
+				  	WHERE tipe = '$type'";
 		return $this->db->query($query)->result_array();
 	}
 
@@ -71,11 +67,11 @@ class Barangio_Model extends CI_Model
 
 	public function getSingleData($id)
 	{
-        return $this->db->get_where('barang_io', ['id' => $id])->row_array();
+		return $this->db->get_where('barang_io', ['id' => $id])->row_array();
 	}
 
 	public function hapusData($id)
-    {
-        $this->db->delete('barang_io', ['id' => $id]);
-    }
+	{
+		$this->db->delete('barang_io', ['id' => $id]);
+	}
 }
