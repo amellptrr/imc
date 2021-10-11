@@ -13,8 +13,7 @@ class Barangio_Model extends CI_Model
 	{
 		$query = "SELECT
 					id,
-					nama_barang,
-					merk_barang,
+					id_barang,
 					stok,
 					tanggal
 					FROM
@@ -40,7 +39,7 @@ class Barangio_Model extends CI_Model
 		return $this->db->query($query)->result_array();
 	}
 
-	public function print($min,$max,$type)
+	public function print($min, $max, $type)
 	{
 		$query = "SELECT
 					b.id,
@@ -56,7 +55,7 @@ class Barangio_Model extends CI_Model
 					JOIN satuan AS s ON (b.kode_satuan = s.kode_satuan)
 					WHERE b.tanggal BETWEEN '$min' AND '$max'
 					";
-		if ($type != null){
+		if ($type != null) {
 			$query = $query . " AND tipe = '$type'";
 		}
 		return $this->db->query($query)->result_array();
@@ -65,33 +64,66 @@ class Barangio_Model extends CI_Model
 	public function tambahData()
 	{
 		$data = [
-			"nama_barang" => $this->input->post('nama_barang', true),
-			"merk_barang" => $this->input->post('merk_barang', true),
+			"id_barang" => $this->input->post('id_barang', true),
 			"stok" => $this->input->post('stok', true),
-			"kode_jenis" => $this->input->post('jenis', true),
-			"kode_satuan" => $this->input->post('satuan', true),
 			"tipe" => $this->input->post('tipe', true)
 		];
+		$this->stockHandler();
 		return $this->db->insert('barang_io', $data);
 	}
 
 	public function editdata($id)
 	{
 		$data = [
-			"nama_barang" => $this->input->post('nama_barang', true),
-			"merk_barang" => $this->input->post('merk_barang', true),
+			"id_barang" => $this->input->post('id_barang', true),
 			"stok" => $this->input->post('stok', true),
-			"kode_jenis" => $this->input->post('jenis', true),
-			"kode_satuan" => $this->input->post('satuan', true),
 			"tipe" => $this->input->post('tipe', true)
 		];
-		$this->db->where('id', $this->input->post('id'));
+		$this->stockHandler();
+		$this->db->where('id_barang', $this->input->post('id_barang'));
 		$this->db->update('barang_io', $data);
+	}
+
+	public function stockHandler()
+	{
+		if ($this->input->post('tipe', true) == 'masuk') {
+			$this->addStock($this->input->post('id_barang', true));
+		} else {
+			$this->reduceStock($this->input->post('id_barang', true));
+		}
+	}
+
+	public function addStock($id)
+	{
+		$currentStock = $this->getSingledataBarang($id);
+		$updatedStock = (int) $currentStock + (int) $this->input->post('stok', true);
+		$data = [
+			"stok" => $updatedStock,
+		];
+		$this->db->where('id', $id);
+		$this->db->update('barang', $data);
+	}
+
+	public function reduceStock($id)
+	{
+		$currentStock = $this->getSingledataBarang($id);
+		$updatedStock = (int) $currentStock - (int) $this->input->post('stok', true);
+		$data = [
+			"stok" => $updatedStock,
+		];
+		$this->db->where('id', $id);
+		$this->db->update('barang', $data);
 	}
 
 	public function getSingleData($id)
 	{
 		return $this->db->get_where('barang_io', ['id' => $id])->row_array();
+	}
+
+	public function getSingledataBarang($id)
+	{
+		$data = $this->db->get_where('barang', ['id' => $id])->row_array();
+		return $data['stok'];
 	}
 
 	public function hapusData($id)

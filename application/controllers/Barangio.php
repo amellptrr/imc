@@ -23,6 +23,7 @@ class Barangio extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Barangio_model');
+		$this->load->model('Barang_Model');
 		$this->load->model('Jenis_Model');
 		$this->load->model('Satuan_Model');
     }
@@ -50,18 +51,14 @@ class Barangio extends CI_Controller
 	public function tambah_data()
     {
         $data['judul'] = 'Tambah Data Barang';
-		$this->form_validation->set_rules('nama_barang','nama_barang','required');
+		$data['barang'] = $this->Barang_Model->getDataBarang();
+		$this->form_validation->set_rules('id_barang','id_barang','required');
 		$this->form_validation->set_rules('stok','stok','required');
-		$this->form_validation->set_rules('merk_barang','merk_barang','required');
-		$this->form_validation->set_rules('jenis','jenis','required');
-		$this->form_validation->set_rules('satuan','satuan','required');
 		$this->form_validation->set_rules('tipe','tipe','required');
 		if ($this->form_validation->run() == false) {
-			$data['jenis'] = $this->Jenis_Model->getDataJenis();
-			$data['satuan'] = $this->Satuan_Model->getDataSatuan();
             $this->load->view('template/header', $data);
             $this->load->view('template/sidebar');
-            $this->load->view('data/tambah_barang', $data);
+            $this->load->view('data/tambah_barangio', $data);
         } else {
             $this->Barangio_model->tambahData();
             $this->session->set_flashdata('flash', 'Ditambahkan');
@@ -73,20 +70,16 @@ class Barangio extends CI_Controller
 	{
 		$data['judul'] = 'Edit Data Barang';
 		$data['barangio'] = $this->Barangio_model->getSingleData($id);
-		$this->form_validation->set_rules('nama_barang','nama_barang','required');
+		$data['barang'] = $this->Barang_Model->getDataBarang();
+		$this->form_validation->set_rules('id_barang','id_barang','required');
 		$this->form_validation->set_rules('stok','stok','required');
-		$this->form_validation->set_rules('merk_barang','merk_barang','required');
-		$this->form_validation->set_rules('jenis','jenis','required');
-		$this->form_validation->set_rules('satuan','satuan','required');
 		$this->form_validation->set_rules('tipe','tipe','required');
 		if ($this->form_validation->run() == false) {
-			$data['jenis'] = $this->Jenis_Model->getDataJenis();
-			$data['satuan'] = $this->Satuan_Model->getDataSatuan();
             $this->load->view('template/header', $data);
             $this->load->view('template/sidebar');
             $this->load->view('data/edit_barangio', $data);
         } else {
-            $this->Barangio_model->tambahData();
+            $this->Barangio_model->editdata();
             $this->session->set_flashdata('flash', 'Ditambahkan');
             redirect(base_url('barangio'));
         }

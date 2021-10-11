@@ -48,10 +48,7 @@
 									<tr>
 										<th>No.</th>
 										<th>ID Barang</th>
-										<th>Nama Barang</th>
-										<th>Merk Barang</th>
 										<th>Stok</th>
-										<th>Keterangan</th>
 										<th>Tanggal</th>
 										<th></th>
 									</tr>
@@ -62,12 +59,9 @@
 										foreach ($barang as $row) : ?>
 											<tr>
 												<td><?= $i++; ?></td>
-												<td><?= $row['id']; ?></td>
-												<td><?= $row['nama_barang']; ?></td>
-												<td><?= $row['merk_barang']; ?></td>
+												<td><?= $row['id_barang']; ?></td>
 												<!-- <td>pake if else nanti</td> -->
 												<td><?= $row['stok']; ?></td>
-												<td><?php echo ($row['stok'] < 50 ? "Stok Rendah" : "") ?></td>
 												<td><?= $row['tanggal'] ?? "" ?></td>
 												<td align="center">
 													<a href="<?= base_url(); ?>barangio/edit_data/<?= $row['id'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square"></i></a>

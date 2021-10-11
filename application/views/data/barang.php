@@ -1,4 +1,4 @@
-<!-- Content Wrapper. Contains page content -->
+Content Wrapper. Contains page content
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
@@ -22,9 +22,9 @@
 					<div class="box">
 						<div class="box-header">
 							<h3 class="box-title">Data Barang</h3>
-							<button type="button" class="btn btn-success btn-sm pull-right"><i class="fa fa-plus">
+							<a href="<?php echo base_url('/Barang/tambah_data') ?>" class="btn btn-success btn-sm pull-right"><i class="fa fa-plus">
 									<span><b>Tambah Data</b></span>
-								</i></button>
+								</i></a>
 							<a href="/barangio/print" class="btn btn-success btn-sm pull-right print-btn"><i class="fa fa-print">
 									<span><b>Cetak</b></span>
 								</i></a>

@@ -19,10 +19,15 @@ class Stok_barang extends CI_Controller
      * map to /index.php/welcome/<method_name>
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
+	function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Stok_Model');
+    }
     public function index()
     {
         $data['judul'] = 'Stok Barang';
-
+		$data['data'] = $this->Stok_Model->getAllData();
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar');
         $this->load->view('laporan/stok_barang', $data);

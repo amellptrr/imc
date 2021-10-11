@@ -9,18 +9,26 @@ class Barang_Model extends CI_Model
         $this->load->database();
     }
 
-    public function getDataBarang($type)
+    public function getDataBarang()
     {
-        $query = "SELECT `barang`.*, `jenis`.`jenis_barang`, `satuan`.`satuan_barang`
-                  FROM `barang`
-                  JOIN `jenis`
-                  ON `barang`.`kode_jenis` = `jenis`.`kode_jenis`
-                  JOIN `satuan`
-                  ON `barang`.`kode_satuan` = `satuan`.`kode_satuan`
-				  WHERE `barang`.tipe = '$type'
-                  ";
+		$query = "SELECT b.*, j.jenis_barang, s.satuan_barang
+				  FROM barang AS b
+				  JOIN jenis AS j
+				  ON b.kode_jenis = j.kode_jenis
+				  JOIN satuan AS s
+				  ON b.kode_satuan = s.kode_satuan";
         return $this->db->query($query)->result_array();
     }
 
+	public function tambahData()
+	{
+		$data = [
+			"nama_barang" => $this->input->post('nama_barang', true),
+			"merk_barang" => $this->input->post('merk_barang', true),
+			"kode_jenis" => $this->input->post('jenis', true),
+			"kode_satuan" => $this->input->post('satuan', true),
+		];
+		return $this->db->insert('barang', $data);
+	}
 	
 }

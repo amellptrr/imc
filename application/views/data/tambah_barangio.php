@@ -25,30 +25,25 @@
 					</div>
 					<!-- /.box-header -->
 					<!-- form start -->
-					<form role="form" method="POST" action="<?php echo base_url('/Barang/tambah_data') ?>" enctype="multipart/form-data">
+					<form role="form" method="POST" action="<?php echo base_url('/Barangio/tambah_data') ?>" enctype="multipart/form-data">
 						<div class="box-body">
 							<div class="form-group">
-								<label for="nama_barang">Nama Barang</label>
-								<input type="text" name="nama_barang" class="form-control" id="nama_barang" placeholder="Masukkan Nama Barang">
-							</div>
-							<div class="form-group">
-								<label for="merk_barang">Merk Barang</label>
-								<input type="text" name="merk_barang" class="form-control" id="merk_barang" placeholder="Masukkan Nama Barang">
-							</div>
-							<div class="form-group">
-								<label for="jenis_barang">Jenis Barang</label>
-								<select class="form-control select2" name="jenis" style="width: 100%;">
-									<?php foreach ($jenis as $key => $value) { ?>
-										<option value="<?php echo $value['kode_jenis'] ?>"><?php echo $value['jenis_barang'] ?></option>
+								<label for="satuan_barang">Barang</label>
+								<select class="form-control select2" name="id_barang" style="width: 100%;">
+									<?php foreach ($barang as $key => $value) { ?>
+										<option value="<?php echo $value['id'] ?>"><?php echo $value['nama_barang'] ?></option>
 									<?php } ?>
 								</select>
 							</div>
 							<div class="form-group">
-								<label for="satuan_barang">Satuan Barang</label>
-								<select class="form-control select2" name="satuan" style="width: 100%;">
-									<?php foreach ($satuan as $key => $value) { ?>
-										<option value="<?php echo $value['kode_satuan'] ?>"><?php echo $value['satuan_barang'] ?></option>
-									<?php } ?>
+								<label for="nama_barang">Stok</label>
+								<input type="text" name="stok" class="form-control" id="stok" placeholder="Masukkan Nama Barang">
+							</div>
+							<div class="form-group">
+								<label for="satuan_barang">Tipe</label>
+								<select class="form-control select2" name="tipe" style="width: 100%;">
+									<option value="masuk">Masuk</option>
+									<option value="keluar">Keluar</option>
 								</select>
 							</div>
 						</div>
