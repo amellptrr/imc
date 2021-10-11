@@ -118,4 +118,11 @@ class User extends CI_Controller
             return redirect(base_url('user/list'));
         }
     }
+
+	public function hapus_user($id)
+    {
+        $this->User_model->hapusUser($id);
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect('user/list');
+    }
 }
