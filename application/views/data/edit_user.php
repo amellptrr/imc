@@ -43,7 +43,7 @@
 								<label for="merk_barang">Password</label>
 								<input type="password" value="<?php echo $user['password'] ?>" name="password" class="form-control" id="merk_barang" placeholder="Masukkan Password">
 							</div>
-							<?php if (!isset($_GET['type']) && $_SESSION['role'] == "Admin"): ?>
+							<?php if (!isset($_GET['type']) && strtolower($_SESSION['role']) == "admin"): ?>
 							<div class="form-group">
 								<label for="merk_barang">Role</label>
 								<input type="text" value="<?php echo $user['role'] ?>" name="role" class="form-control" id="merk_barang" placeholder="Masukkan Password">
