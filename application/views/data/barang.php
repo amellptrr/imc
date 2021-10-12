@@ -25,9 +25,6 @@ Content Wrapper. Contains page content
 							<a href="<?php echo base_url('/Barang/tambah_data') ?>" class="btn btn-success btn-sm pull-right"><i class="fa fa-plus">
 									<span><b>Tambah Data</b></span>
 								</i></a>
-							<a href="/barangio/print" class="btn btn-success btn-sm pull-right print-btn"><i class="fa fa-print">
-									<span><b>Cetak</b></span>
-								</i></a>
 						</div>
 						<!-- /.box-header -->
 						<div class="box-body">
