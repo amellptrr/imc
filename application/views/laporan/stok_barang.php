@@ -23,9 +23,9 @@
 					<div class="box">
 						<div class="box-header">
 							<h3 class="box-title">Stok Barang</h3>
-							<button type="button" class="btn btn-primary btn-sm pull-right"><i class="fa fa-print"></i>
+							<!-- <button type="button" class="btn btn-primary btn-sm pull-right"><i class="fa fa-print"></i>
 								<span>Cetak</span>
-							</button>
+							</button> -->
 						</div>
 						<!-- /.box-header -->
 						<div class="box-body">

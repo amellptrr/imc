@@ -16,7 +16,7 @@ class Stok_Model extends CI_Model
 		b.id,
 		b.nama_barang,
 		b.merk_barang,
-		b.stok,
+		bio.stok,
 		bio.tipe,
 		bio.tanggal
 		FROM barang AS b
