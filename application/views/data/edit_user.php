@@ -25,7 +25,7 @@
 					</div>
 					<!-- /.box-header -->
 					<!-- form start -->
-					<form role="form" method="POST" action="/user/edit_user/<?php echo $_SESSION['id_user'] ?>" enctype="multipart/form-data">
+					<form role="form" method="POST" action="<?php echo base_url('/user/edit_user/') ?><?php echo $_SESSION['id_user'] ?>" enctype="multipart/form-data">
 						<div class="box-body">
 							<div class="form-group">
 								<label for="nama_barang">Nama Lengkap</label>

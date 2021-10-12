@@ -22,7 +22,7 @@
 
             <h3 class="box-title"> Profile</h3>
 
-            <a href="/user/edit_user/<?php echo $_SESSION['id_user'] ?>?type=profile" class="btn btn-warning btn-xs pull-right"><i class="fa fa-pencil-square-o"></i>
+            <a href="<?php echo base_url('/user/edit_user/' )?><?php echo $_SESSION['id_user'] ?>?type=profile" class="btn btn-warning btn-xs pull-right"><i class="fa fa-pencil-square-o"></i>
               <span>Edit</span>
             </a>
           </div>
