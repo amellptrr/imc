@@ -55,12 +55,13 @@ class User_Model extends CI_Model
 
 	public function editUser($id)
     {
+		$currentUser = $this->getUserById($id);
         $data = [
-			"nama_lengkap" => $this->input->post('nama_lengkap',true), 
-			"email" => $this->input->post('email',true), 
-			"no_hp" => $this->input->post('no_hp',true), 
-			"password" => $this->input->post('password',true), 
-			"role" => $this->input->post('role',true) ?? $_SESSION['role']
+			"nama_lengkap" => $this->input->post('nama_lengkap',true) ?? $currentUser['nama_lengkap'], 
+			"email" => $this->input->post('email',true) ?? $currentUser['email'], 
+			"no_hp" => $this->input->post('no_hp',true) ?? $currentUser['no_hp'], 
+			"password" => $this->input->post('password',true) ?? $currentUser['password'], 
+			"role" => $this->input->post('role',true) ?? $currentUser['role']
         ];
 
         $this->db->where('id_user', $id);

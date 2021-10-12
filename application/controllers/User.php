@@ -102,7 +102,7 @@ class User extends CI_Controller
 		$this->form_validation->set_rules('email','email','required');
 		$this->form_validation->set_rules('no_hp','no_hp','required');
 		$this->form_validation->set_rules('password','password','required');
-		if (strtolower($_SESSION['role']) == "admin"){
+		if (strtolower($_SESSION['role']) == "admin" && !isset($_GET['type'])){
 			$this->form_validation->set_rules('role','role','required');
 		}
 		if ($this->form_validation->run() == false) {
@@ -115,7 +115,8 @@ class User extends CI_Controller
 			if ($_SESSION['role'] != "Admin"){
 				return redirect(base_url('user'));
 			}
-            return redirect(base_url('user/list'));
+			$baseUrl = (isset($_GET['type']) ? 'user' : 'user/list');
+            return redirect(base_url($baseUrl));
         }
     }
 
