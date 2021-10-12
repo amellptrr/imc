@@ -72,8 +72,8 @@ Content Wrapper. Contains page content
 												<td><?php echo ($row['stok'] < 50 ? "Stok Rendah" : "") ?></td>
 												<td><?= $row['tanggal'] ?? "" ?></td>
 												<td align="center">
-													<a href="<?= base_url(); ?>barangio/edit_data/<?= $row['id'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square"></i></a>
-													<a href="<?= base_url(); ?>barangio/hapus_data/<?= $row['id'] ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+													<a href="<?= base_url(); ?>Barang/edit_data/<?= $row['id'] ?>?id=<?= $row['id'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square"></i></a>
+													<a href="<?= base_url(); ?>Barang/hapus_data/<?= $row['id'] ?>?id=<?= $row['id'] ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
 												</td>
 											</tr>
 									<?php endforeach;

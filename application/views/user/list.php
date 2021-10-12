@@ -53,9 +53,9 @@
 												<td><?= $row['no_hp']; ?></td>
 												<td><?= $row['role'] ?? "" ?></td>
 												<td align="center">
-													<a href="<?= base_url(); ?>user/edit_user/<?= $row['id_user'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square"></i></a>
+													<a href="<?= base_url(); ?>user/edit_user/<?= $row['id_user'] ?>?id=<?= $row['id_user'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square"></i></a>
 													<?php if ($row['role'] != "Admin") :  ?>
-														<a href="<?= base_url(); ?>user/hapus_user/<?= $row['id_user'] ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+														<a href="<?= base_url(); ?>user/hapus_user/<?= $row['id_user'] ?>?id=<?= $row['id_user'] ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
 													<?php endif; ?>
 												</td>
 											</tr>

@@ -37,6 +37,7 @@ class Barang extends CI_Controller
 		$this->load->view('template/sidebar');
 		$this->load->view('data/barang', $data);
 	}
+
 	public function tambah_data()
 	{
 		$data['judul'] = 'Tambah Data Barang';
@@ -52,6 +53,28 @@ class Barang extends CI_Controller
 			$this->load->view('data/tambah_barang', $data);
 		} else {
 			$this->Barang_Model->tambahData();
+			$this->session->set_flashdata('flash', 'Ditambahkan');
+			redirect(base_url('barang'));
+		}
+	}
+
+
+	public function edit_data($id)
+	{
+		$data['judul'] = 'Tambah Data Barang';
+		$data['barang'] = $this->Barang_Model->getDataBarangById($id);
+		$this->form_validation->set_rules('nama_barang', 'nama_barang', 'required');
+		$this->form_validation->set_rules('merk_barang', 'merk_barang', 'required');
+		$this->form_validation->set_rules('jenis', 'jenis', 'required');
+		$this->form_validation->set_rules('satuan', 'satuan', 'required');
+		if ($this->form_validation->run() == false) {
+			$data['jenis'] = $this->Jenis_Model->getDataJenis();
+			$data['satuan'] = $this->Satuan_Model->getDataSatuan();
+			$this->load->view('template/header', $data);
+			$this->load->view('template/sidebar');
+			$this->load->view('data/edit_barang', $data);
+		} else {
+			$this->Barang_Model->editData($id);
 			$this->session->set_flashdata('flash', 'Ditambahkan');
 			redirect(base_url('barang'));
 		}
