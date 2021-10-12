@@ -24,10 +24,9 @@ DROP TABLE IF EXISTS `barang`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `barang` (
   `merk_barang` varchar(255) NOT NULL,
-  `tipe` enum('masuk','keluar') NOT NULL,
   `id` int NOT NULL AUTO_INCREMENT,
   `nama_barang` varchar(100) NOT NULL,
-  `stok` int NOT NULL,
+  `stok` int NOT NULL DEFAULT '0',
   `kode_jenis` varchar(30) NOT NULL,
   `kode_satuan` varchar(10) NOT NULL,
   `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -41,7 +40,7 @@ CREATE TABLE `barang` (
 
 LOCK TABLES `barang` WRITE;
 /*!40000 ALTER TABLE `barang` DISABLE KEYS */;
-INSERT INTO `barang` VALUES ('aa','masuk',1,'aa',2,'04','3B','2021-10-10 18:26:07');
+INSERT INTO `barang` VALUES ('dolor it amet',1,'Lorem ipsum',0,'3B','04','2021-10-11 17:52:07');
 /*!40000 ALTER TABLE `barang` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -53,15 +52,14 @@ DROP TABLE IF EXISTS `barang_io`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `barang_io` (
-  `kode_jenis` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `kode_satuan` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `id_barang` int NOT NULL,
   `id` int NOT NULL AUTO_INCREMENT,
-  `nama_barang` varchar(255) NOT NULL,
-  `merk_barang` varchar(255) NOT NULL,
   `stok` int NOT NULL,
   `tipe` enum('masuk','keluar') NOT NULL,
   `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `id_barang` (`id_barang`),
+  CONSTRAINT `barang_io_ibfk_1` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -71,7 +69,7 @@ CREATE TABLE `barang_io` (
 
 LOCK TABLES `barang_io` WRITE;
 /*!40000 ALTER TABLE `barang_io` DISABLE KEYS */;
-INSERT INTO `barang_io` VALUES ('3B','02',1,'a','a',2,'keluar','2021-10-10 18:51:03'),('2A','01',2,'a','a',2,'masuk','2021-10-10 18:58:15');
+INSERT INTO `barang_io` VALUES (1,1,222,'masuk','2021-10-11 17:54:03'),(1,2,222,'keluar','2021-10-11 17:55:37');
 /*!40000 ALTER TABLE `barang_io` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -137,8 +135,9 @@ CREATE TABLE `user` (
   `no_hp` varchar(18) NOT NULL,
   `password` varchar(100) NOT NULL,
   `role` varchar(10) NOT NULL,
-  PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id_user`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,7 +146,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'a','a.gmail.com','099','loremipsum','Admin'),(2,'a','a@gmail.com','099','loremipsum','Admin'),(3,'aowkdowad','admin@admin.com','1298321','aodwkaod','karyawan'),(4,'loremxd','lorem@lorem.com','88888','aaaa','karyawan');
+INSERT INTO `user` VALUES (1,'a','a@gmail.com','099','loremipsum','Admin'),(6,'loremipsum','Akbart40867@gmail.com','8888','loremipsum','karyawan');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -160,4 +159,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-11  4:13:37
+-- Dump completed on 2021-10-12 18:05:31

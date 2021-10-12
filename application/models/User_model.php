@@ -9,9 +9,9 @@ class User_Model extends CI_Model
         $this->load->database();
     }
 
-    public function getUser($email)
+    public function getUser($id)
     {
-        $query = "SELECT * FROM user WHERE email = '$email'";
+        $query = "SELECT * FROM user WHERE email = '$id'";
 		$data = $this->db->query($query)->result_array();
 		if (count($data) > 0){
 			$data = $data[0];

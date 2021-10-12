@@ -31,7 +31,7 @@ Content Wrapper. Contains page content
 						</div>
 						<!-- /.box-header -->
 						<div class="box-body">
-							<table cellspacing="5" cellpadding="5" border="0">
+							<!-- <table cellspacing="5" cellpadding="5" border="0">
 								<tbody>
 									<tr>
 										<td>Minimum date:</td>
@@ -42,7 +42,7 @@ Content Wrapper. Contains page content
 										<td><input type="text" id="max" name="max"></td>
 									</tr>
 								</tbody>
-							</table>
+							</table> -->
 							<table id="dataTableBarang" class="table table-bordered table-striped" style="width:100%">
 								<thead>
 									<tr>

@@ -88,7 +88,7 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <a href="<?= base_url('User') ?>" class="btn btn-default btn-flat">Setting</a>
-                  <a href="/user/logout" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="<?php echo base_url('/user/logout') ?>" class="btn btn-default btn-flat">Sign out</a>
                 </li>
               </ul>
             </li>
