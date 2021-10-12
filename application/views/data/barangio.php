@@ -145,7 +145,7 @@
 		function(settings, data, dataIndex) {
 			var min = minDate.val();
 			var max = maxDate.val();
-			var date = new Date(data[6]);
+			var date = new Date(data[3]);
 
 			if (
 				(min === null && max === null) ||
@@ -171,18 +171,18 @@
 		// DataTables initialisation
 		var table = $('#dataTableBarang').DataTable();
 		// Refilter the table
-		let min = null;
-		let max = null;
+		let minDataDate = null;
+		let maxDataDate = null;
 		$('#min').on('change',function(){
-			min = $(this).val();
+			minDataDate = $(this).val();
 		});
 		$('#max').on('change',function(){
-			max = $(this).val();
+			maxDataDate = $(this).val();
 		});
 		$('#min, #max').on('change', function() {
 			table.draw();
 			let type = '<?php echo (isset($_GET['type']) ? "type=" . $_GET['type'] . "&" : '') ?>';
-			let printUrl = "/barangio/print?" + type + `min=${min}&max=${max}`
+			let printUrl = "/barangio/print?" + type + `min=${minDataDate}&max=${maxDataDate}`
 			$('.print-btn').attr('href', printUrl)
 		});
 	});

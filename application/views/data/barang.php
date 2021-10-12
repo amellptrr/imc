@@ -50,10 +50,7 @@ Content Wrapper. Contains page content
 										<th>ID Barang</th>
 										<th>Nama Barang</th>
 										<th>Jenis Barang</th>
-										<th>Stok</th>
 										<th>Satuan Barang</th>
-										<th>Keterangan</th>
-										<th>Tanggal</th>
 										<th></th>
 									</tr>
 								</thead>
@@ -67,10 +64,7 @@ Content Wrapper. Contains page content
 												<td><?= $row['nama_barang']; ?></td>
 												<td><?= $row['jenis_barang']; ?></td>
 												<!-- <td>pake if else nanti</td> -->
-												<td><?= $row['stok']; ?></td>
 												<td><?= $row['satuan_barang'] ?? ""; ?></td>
-												<td><?php echo ($row['stok'] < 50 ? "Stok Rendah" : "") ?></td>
-												<td><?= $row['tanggal'] ?? "" ?></td>
 												<td align="center">
 													<a href="<?= base_url(); ?>Barang/edit_data/<?= $row['id'] ?>?id=<?= $row['id'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square"></i></a>
 													<a href="<?= base_url(); ?>Barang/hapus_data/<?= $row['id'] ?>?id=<?= $row['id'] ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>

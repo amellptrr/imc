@@ -29,6 +29,18 @@
 						</div>
 						<!-- /.box-header -->
 						<div class="box-body">
+							<table cellspacing="5" cellpadding="5" border="0">
+								<tbody>
+									<tr>
+										<td>Minimum date:</td>
+										<td><input type="text" id="min" name="min"></td>
+									</tr>
+									<tr>
+										<td>Maximum date:</td>
+										<td><input type="text" id="max" name="max"></td>
+									</tr>
+								</tbody>
+							</table>
 							<table id="dataTableBarang" class="table table-bordered table-striped" style="width:100%">
 								<thead>
 									<tr>
@@ -137,7 +149,7 @@
 		function(settings, data, dataIndex) {
 			var min = minDate.val();
 			var max = maxDate.val();
-			var date = new Date(data[6]);
+			var date = new Date(data[7]);
 
 			if (
 				(min === null && max === null) ||

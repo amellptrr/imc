@@ -50,9 +50,10 @@ class Barangio_Model extends CI_Model
 					j.jenis_barang,
 					s.satuan_barang
 					FROM
-					barang_io as b
+					barang as b
 					JOIN jenis AS j ON (b.kode_jenis = j.kode_jenis)
 					JOIN satuan AS s ON (b.kode_satuan = s.kode_satuan)
+					JOIN barang_io AS bio on (bio.id_barang = b.id)
 					WHERE b.tanggal BETWEEN '$min' AND '$max'
 					";
 		if ($type != null) {
