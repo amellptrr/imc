@@ -47,24 +47,31 @@ class Barangio_Model extends CI_Model
 					b.merk_barang,
 					b.stok,
 					b.tanggal,
-					j.jenis_barang,
-					s.satuan_barang,
-					bio.stok AS stok_bio
-					";
-		if ($type == null) {
-			$query = $query . ",
-			(SELECT DISTINCT stok FROM barang_io WHERE id_barang = b.id AND tipe = 'masuk' AND id = bio.id) AS stok_masuk,
-			(SELECT DISTINCT stok FROM barang_io WHERE id_barang = b.id AND tipe = 'keluar' AND id = bio.id) AS stok_keluar,
-			(SELECT DISTINCT tanggal FROM barang_io WHERE id_barang = b.id AND tipe = 'masuk' AND id = bio.id) AS tanggal_masuk,
-			(SELECT DISTINCT tanggal FROM barang_io WHERE id_barang = b.id AND tipe = 'keluar' AND id = bio.id) AS tanggal_keluar";
-		}
-		$query = $query . "	FROM
+					bio.stok AS stok_bio,
+					FROM
 					barang as b
 					JOIN jenis AS j ON (b.kode_jenis = j.kode_jenis)
 					JOIN satuan AS s ON (b.kode_satuan = s.kode_satuan)
 					JOIN barang_io AS bio on (bio.id_barang = b.id)
-					WHERE b.tanggal BETWEEN '$min' AND '$max'
-					";
+					WHERE b.tanggal BETWEEN '$min' AND '$max'";
+		if ($type == null) {
+			$query = "SELECT DISTINCT
+			b.id,
+			b.nama_barang,
+			b.merk_barang,
+			(SELECT DISTINCT stok FROM barang_io WHERE id_barang = b.id AND tipe = 'masuk' LIMIT 1) AS stok_masuk,
+			(SELECT DISTINCT stok FROM barang_io WHERE id_barang = b.id AND tipe = 'keluar' LIMIT 1) AS stok_keluar,
+			(SELECT DISTINCT tanggal FROM barang_io WHERE id_barang = b.id AND tipe = 'masuk' LIMIT 1) AS tanggal_masuk,
+			(SELECT DISTINCT tanggal FROM barang_io WHERE id_barang = b.id AND tipe = 'keluar' LIMIT 1) AS tanggal_keluar
+			FROM barang AS b
+			JOIN barang_io AS bio
+			ON b.id = bio.id_barang 
+			JOIN jenis AS j
+			ON b.kode_jenis = j.kode_jenis
+			JOIN satuan AS s
+			ON b.kode_satuan = s.kode_satuan
+			WHERE b.tanggal BETWEEN '$min' AND '$max'";
+		}
 		if ($type != null) {
 			$query = $query . " AND tipe = '$type'";
 		}
