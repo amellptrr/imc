@@ -19,6 +19,15 @@
 					<th>ID Barang</th>
 					<th>Nama Barang</th>
 					<th>Merk Barang</th>
+					<?php if (!empty($barang)) {
+						$i = 1;
+						foreach ($barang as $key => $row) : ?>
+							<?php if ($key == 0 && $row['stok_masuk']) : ?>
+								<th>Stok Masuk</th>
+								<th>Stok Keluar</th>
+							<?php endif; ?>
+					<?php endforeach;
+					} ?>
 					<th>Stok</th>
 					<th>Keterangan</th>
 					<th>Tanggal</th>
@@ -33,7 +42,10 @@
 							<td><?= $row['id']; ?></td>
 							<td><?= $row['nama_barang']; ?></td>
 							<td><?= $row['merk_barang']; ?></td>
-							<!-- <td>pake if else nanti</td> -->
+							<?php if ($row['stok_masuk']) : ?>
+								<td><?= $row['stok_masuk'] ?></td>
+								<td><?= $row['stok_keluar'] ?></td>
+							<?php endif; ?>
 							<td><?= $row['stok']; ?></td>
 							<td><?php echo ($row['stok'] < 50 ? "Stok Rendah" : "") ?></td>
 							<td><?= $row['tanggal'] ?? "" ?></td>
@@ -45,6 +57,7 @@
 	</div>
 </body>
 <script>
-	 window.print();
+	window.print();
 </script>
+
 </html>

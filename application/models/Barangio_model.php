@@ -48,7 +48,9 @@ class Barangio_Model extends CI_Model
 					b.stok,
 					b.tanggal,
 					j.jenis_barang,
-					s.satuan_barang
+					s.satuan_barang,
+					(SELECT stok FROM barang_io WHERE id_barang = b.id AND tipe = 'masuk') AS stok_masuk,
+					(SELECT stok FROM barang_io WHERE id_barang = b.id AND tipe = 'keluar') AS stok_keluar
 					FROM
 					barang as b
 					JOIN jenis AS j ON (b.kode_jenis = j.kode_jenis)
