@@ -48,10 +48,10 @@
 										<th>ID Barang</th>
 										<th>Nama Barang</th>
 										<th>Merk Barang</th>
-										<th>Stok Barang</th>
+										<th>Stok</th>
 										<th>Keterangan</th>
-										<th>Tipe</th>
-										<th>Tanggal</th>
+										<th>Tanggal Masuk</th>
+										<th>Tanggal Keluar</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -63,10 +63,10 @@
 												<td><?= ($row['id'] == ($key != 0 ? $data[$key - 1]['id'] : 0) ? '' : $row['id']) ?></td>
 												<td><?= $row['nama_barang']; ?></td>
 												<td><?= $row['merk_barang']; ?></td>
-												<td><?= $row['stok']; ?></td>
-												<td><?= ($row['stok'] < 50 ? 'Stok rendah!' : '-') ?></td>
-												<td><?= $row['tipe'] ?? "" ?></td>
-												<td><?= $row['tanggal'] ?? "" ?></td>
+												<td><?= (isset($row['stok_masuk']) && isset($row['stok_keluar']) ? $row['stok_masuk'] - $row['stok_keluar'] : $row['stok_bio']); ?></td>
+												<td><?php echo (isset($row['stok_masuk']) && isset($row['stok_keluar']) ? (($row['stok_masuk'] - $row['stok_keluar']) < 50 ? "Stok Rendah" : "") : ($row['stok_bio'] < 50 ? "Stok Rendah" : "")) ?></td>
+												<td><?= $row['tanggal_masuk'] ?? "" ?></td>
+												<td><?= $row['tanggal_keluar'] ?? "" ?></td>
 												<!-- <td align="center">
 													<a href="<?= base_url(); ?>barangio/edit_data/<?= $row['id'] ?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil-square"></i></a>
 													<a href="<?= base_url(); ?>barangio/hapus_data/<?= $row['id'] ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
