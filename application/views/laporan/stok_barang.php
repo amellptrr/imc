@@ -23,7 +23,7 @@
 					<div class="box">
 						<div class="box-header">
 							<h3 class="box-title">Stok Barang</h3>
-							<a href="<?php echo base_url('/barangio/print') ?>" class="btn btn-primary btn-sm pull-right"><i class="fa fa-print"></i>
+							<a href="<?php echo base_url('/barangio/print') ?>" class="print-btn btn btn-primary btn-sm pull-right"><i class="fa fa-print"></i>
 								<span>Cetak</span>
 							</a>
 						</div>
@@ -186,7 +186,7 @@
 		$('#min, #max').on('change', function() {
 			table.draw();
 			let type = '<?php echo (isset($_GET['type']) ? "type=" . $_GET['type'] . "&" : '') ?>';
-			let printUrl = "/barangio/print?" + type + `min=${min}&max=${max}`
+			let printUrl = "/barangio/print?" + `min=${min}&max=${max}`
 			$('.print-btn').attr('href', printUrl)
 		});
 	});
