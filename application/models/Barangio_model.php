@@ -41,7 +41,7 @@ class Barangio_Model extends CI_Model
 
 	public function print($min, $max, $type)
 	{
-		$query = "SELECT
+		$query = "SELECT DISTINCT
 					b.id,
 					b.nama_barang,
 					b.merk_barang,
