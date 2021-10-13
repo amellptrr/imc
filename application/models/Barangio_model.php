@@ -48,10 +48,16 @@ class Barangio_Model extends CI_Model
 					b.stok,
 					b.tanggal,
 					j.jenis_barang,
-					s.satuan_barang,
-					(SELECT stok FROM barang_io WHERE id_barang = b.id AND tipe = 'masuk') AS stok_masuk,
-					(SELECT stok FROM barang_io WHERE id_barang = b.id AND tipe = 'keluar') AS stok_keluar
-					FROM
+					s.satuan_barang
+					";
+		if ($type == null) {
+			$query = $query . ",
+			(SELECT stok FROM barang_io WHERE id_barang = b.id AND tipe = 'masuk') AS stok_masuk,
+			(SELECT stok FROM barang_io WHERE id_barang = b.id AND tipe = 'keluar') AS stok_keluar,
+			(SELECT tanggal FROM barang_io WHERE id_barang = b.id AND tipe = 'masuk') AS tanggal_masuk,
+			(SELECT tanggal FROM barang_io WHERE id_barang = b.id AND tipe = 'keluar') AS tanggal_keluar";
+		}
+		$query = $query . "	FROM
 					barang as b
 					JOIN jenis AS j ON (b.kode_jenis = j.kode_jenis)
 					JOIN satuan AS s ON (b.kode_satuan = s.kode_satuan)
