@@ -48,7 +48,8 @@ class Barangio_Model extends CI_Model
 					b.stok,
 					b.tanggal,
 					j.jenis_barang,
-					s.satuan_barang
+					s.satuan_barang,
+					bio.stok AS stok_bio
 					";
 		if ($type == null) {
 			$query = $query . ",

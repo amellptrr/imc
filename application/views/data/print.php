@@ -28,13 +28,15 @@
 							<?php endif; ?>
 					<?php endforeach;
 					} ?> -->
-					<th>Stok</th>
+					<th>Stok <?php echo ($title != null ? " " . $title : "") ?></th>
+					<?php if($title == null): ?>
 					<th>Keterangan</th>
+					<?php endif; ?>
 					<?php if (isset($row['tanggal_masuk']) && isset($row['tanggal_keluar'])) : ?>
 					<th>Tanggal Masuk</th>
 					<th>Tanggal Keluar</th>
 					<?php else: ?>
-					<th>Tanggal</th>
+					<th>Tanggal <?php echo ($title != null ? " " . $title : "") ?></th>
 					<?php endif; ?>
 				</tr>
 			</thead>
@@ -51,8 +53,10 @@
 								<td><?= $row['stok_masuk'] ?></td>
 								<td><?= $row['stok_keluar'] ?></td>
 							<?php endif; ?> -->
-							<td><?= (isset($row['stok_masuk']) && isset($row['stok_keluar']) ? $row['stok_masuk'] - $row['stok_keluar'] : $row['stok']); ?></td>
-							<td><?php echo (isset($row['stok_masuk']) && isset($row['stok_keluar']) ? (($row['stok_masuk'] - $row['stok_keluar']) < 50 ? "Stok Rendah" : "") : ($row['stok'] < 50 ? "Stok Rendah" : "")) ?></td>
+							<td><?= (isset($row['stok_masuk']) && isset($row['stok_keluar']) ? $row['stok_masuk'] - $row['stok_keluar'] : $row['stok_bio']); ?></td>
+							<?php if($title == null): ?>
+							<td><?php echo (isset($row['stok_masuk']) && isset($row['stok_keluar']) ? (($row['stok_masuk'] - $row['stok_keluar']) < 50 ? "Stok Rendah" : "") : ($row['stok_bio'] < 50 ? "Stok Rendah" : "")) ?></td>
+							<?php endif; ?>
 							<?php if (isset($row['tanggal_masuk']) && isset($row['tanggal_keluar'])) : ?>
 							<td><?= $row['tanggal_masuk'] ?? "" ?></td>
 							<td><?= $row['tanggal_keluar'] ?? "" ?></td>
