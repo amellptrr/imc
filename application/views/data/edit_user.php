@@ -25,7 +25,7 @@
 					</div>
 					<!-- /.box-header -->
 					<!-- form start -->
-					<form role="form" method="POST" action="<?php echo base_url('/user/edit_user/') ?><?php echo $_GET['id'] ?><?php echo (isset($_GET['type']) ? "?type=" . $_GET['type'] : "") ?>" enctype="multipart/form-data">
+					<form role="form" method="POST" action="<?php echo base_url('/user/edit_user/') ?><?php echo (isset($_GET['id']) ? $_GET['id'] : (isset($_GET['type']) && $_GET['type'] == 'profile' ? $_SESSION['id_user'] : '')) ?><?php echo (isset($_GET['type']) ? "?type=" . $_GET['type'] : "") ?>" enctype="multipart/form-data">
 						<div class="box-body">
 							<div class="form-group">
 								<label for="nama_barang">Nama Lengkap</label>
