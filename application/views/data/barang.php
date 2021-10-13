@@ -181,7 +181,7 @@ Content Wrapper. Contains page content
 		$('#min, #max').on('change', function() {
 			table.draw();
 			let type = '<?php echo (isset($_GET['type']) ? "type=" . $_GET['type'] . "&" : '') ?>';
-			let printUrl = "/barangio/print?" + type + `min=${min}&max=${max}`
+			let printUrl = "<?php echo base_url('/barangio/print') ?>?" + type + `min=${min}&max=${max}`
 			$('.print-btn').attr('href', printUrl)
 		});
 	});

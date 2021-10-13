@@ -182,7 +182,7 @@
 		$('#min, #max').on('change', function() {
 			table.draw();
 			let type = '<?php echo (isset($_GET['type']) ? "type=" . $_GET['type'] . "&" : '') ?>';
-			let printUrl = "/barangio/print?" + type + `min=${minDataDate}&max=${maxDataDate}`
+			let printUrl = "<?php echo base_url('/barangio/print') ?>?" + type + `min=${minDataDate}&max=${maxDataDate}`
 			$('.print-btn').attr('href', printUrl)
 		});
 	});
