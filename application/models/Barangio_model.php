@@ -53,10 +53,10 @@ class Barangio_Model extends CI_Model
 					";
 		if ($type == null) {
 			$query = $query . ",
-			(SELECT stok FROM barang_io WHERE id_barang = b.id AND tipe = 'masuk') AS stok_masuk,
-			(SELECT stok FROM barang_io WHERE id_barang = b.id AND tipe = 'keluar') AS stok_keluar,
-			(SELECT tanggal FROM barang_io WHERE id_barang = b.id AND tipe = 'masuk') AS tanggal_masuk,
-			(SELECT tanggal FROM barang_io WHERE id_barang = b.id AND tipe = 'keluar') AS tanggal_keluar";
+			(SELECT DISTINCT stok FROM barang_io WHERE id_barang = b.id AND tipe = 'masuk' AND id = bio.id) AS stok_masuk,
+			(SELECT DISTINCT stok FROM barang_io WHERE id_barang = b.id AND tipe = 'keluar' AND id = bio.id) AS stok_keluar,
+			(SELECT DISTINCT tanggal FROM barang_io WHERE id_barang = b.id AND tipe = 'masuk' AND id = bio.id) AS tanggal_masuk,
+			(SELECT DISTINCT tanggal FROM barang_io WHERE id_barang = b.id AND tipe = 'keluar' AND id = bio.id) AS tanggal_keluar";
 		}
 		$query = $query . "	FROM
 					barang as b
