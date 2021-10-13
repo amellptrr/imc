@@ -23,9 +23,9 @@
 					<div class="box">
 						<div class="box-header">
 							<h3 class="box-title">Stok Barang</h3>
-							<!-- <button type="button" class="btn btn-primary btn-sm pull-right"><i class="fa fa-print"></i>
+							<a href="<?php echo base_url('/barangio/print') ?>" class="btn btn-primary btn-sm pull-right"><i class="fa fa-print"></i>
 								<span>Cetak</span>
-							</button> -->
+							</a>
 						</div>
 						<!-- /.box-header -->
 						<div class="box-body">
