@@ -60,6 +60,7 @@ class Barangio_Model extends CI_Model
 			b.id,
 			b.nama_barang,
 			b.merk_barang,
+			b.stok as stok_barang,
 			(SELECT stok FROM barang_io WHERE id_barang = b.id AND tipe = 'masuk' ORDER BY barang_io.tanggal LIMIT 1) AS stok_masuk,
 			(SELECT stok FROM barang_io WHERE id_barang = b.id AND tipe = 'keluar' ORDER BY barang_io.tanggal LIMIT 1) AS stok_keluar,
 			(SELECT tanggal FROM barang_io WHERE id_barang = b.id AND tipe = 'masuk' ORDER BY barang_io.tanggal LIMIT 1) AS tanggal_masuk,
