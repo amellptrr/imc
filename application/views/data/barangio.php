@@ -161,9 +161,11 @@
 	$(document).ready(function() {
 		const queryString = window.location.search;
 		const parameters = new URLSearchParams(queryString);
-		const minParams = parameters.get('min');
-		const maxParams = parameters.get('max');
+		let minParams = parameters.get('min');
+		let maxParams = parameters.get('max');
 		if (minParams != null && maxParams != null){
+			minParams = moment(minParams,).subtract(1,'days').format('YYYY-MM-DD');
+			maxParams = moment(maxParams,).subtract(1,'days').format('YYYY-MM-DD');
 			$('#min').val(minParams);
 			$('#max').val(maxParams);
 		}
@@ -189,8 +191,10 @@
 		$('#min, #max').on('change', function() {
 			table.draw();
 			let type = '<?php echo (isset($_GET['type']) ? "type=" . $_GET['type'] . "&" : '') ?>';
-			let printUrl = "<?php echo base_url('/barangio') ?>?" + type + `min=${minDataDate}&max=${maxDataDate}`;
 			if (maxDataDate){
+				minDataDate = moment(minDataDate,'YYYY-MM-DD').add(1,'days').format('YYYY-MM-DD');
+				maxDataDate = moment(maxDataDate,'YYYY-MM-DD').add(1,'days').format('YYYY-MM-DD');
+				let printUrl = "<?php echo base_url('/barangio') ?>?" + type + `min=${minDataDate}&max=${maxDataDate}`;
 				window.location.replace(printUrl);
 			}
 		});

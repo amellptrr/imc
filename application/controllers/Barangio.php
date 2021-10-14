@@ -35,7 +35,7 @@ class Barangio extends CI_Controller
 		$queryParams = null;
 		if (isset($_GET['type'])){
 			$queryParams = $_GET['type'];
-			$data['judul'] = $data['judul'] . " " . $_GET['type'];
+			$data['judul'] = $data['judul'] . " " . ucfirst($_GET['type']);
 		} else {
 			$queryParams = "?type=masuk";
 			return redirect(base_url('/barangio') . $queryParams);
@@ -93,8 +93,10 @@ class Barangio extends CI_Controller
     }
 
 	public function print(){
-		$minDate = (isset($_GET['min']) ? $_GET['min'] . " 00:00:00" : "");
-		$maxDate = (isset($_GET['max']) ? $_GET['max'] . " 23:59:59": "");
+		$minDate = (isset($_GET['min']) ? $_GET['min'] : "");
+		$maxDate = (isset($_GET['max']) ? $_GET['max']: "");
+		$minDate = date('Y-m-d',(strtotime ( '-1 day' , strtotime ($minDate) ) ));
+		$maxDate = date('Y-m-d',(strtotime ( '-1 day' , strtotime ($maxDate) ) ));
 		$type = (isset($_GET['type']) ? $_GET['type'] : null);
 		$data['barang'] = $this->Barangio_model->print($minDate,$maxDate,$type);
 		$data['title'] = ($type == null ? '' : $type);

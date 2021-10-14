@@ -13,6 +13,8 @@ class Barangio_Model extends CI_Model
 	{
 		$min = $_GET['min'] ?? '';
 		$max = $_GET['max'] ?? '';
+		$min = date('Y-m-d',(strtotime ( '-1 day' , strtotime ($min) ) ));
+		$max = date('Y-m-d',(strtotime ( '-1 day' , strtotime ($max) ) ));
 		$query = "SELECT
 					id,
 					id_barang,
