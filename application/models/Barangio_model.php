@@ -13,8 +13,10 @@ class Barangio_Model extends CI_Model
 	{
 		$min = $_GET['min'] ?? '';
 		$max = $_GET['max'] ?? '';
-		$min = date('Y-m-d',(strtotime ( '-1 day' , strtotime ($min) ) ));
-		$max = date('Y-m-d',(strtotime ( '-1 day' , strtotime ($max) ) ));
+		if ($min != '' && $max != ''){
+			$min = date('Y-m-d',(strtotime ( '-1 day' , strtotime ($min) ) ));
+			$max = date('Y-m-d',(strtotime ( '-1 day' , strtotime ($max) ) ));
+		}
 		$query = "SELECT
 					id,
 					id_barang,
@@ -24,7 +26,7 @@ class Barangio_Model extends CI_Model
 					barang_io
 				  	WHERE tipe = '$type'";
 		if ($min != '' && $max != ''){
-			$query = $query . "	AND barang_io.tanggal BETWEEN '$min' AND '$max'";
+			$query = $query . "	AND (barang_io.tanggal BETWEEN '$min' AND '$max')";
 		}
 		
 		return $this->db->query($query)->result_array();
@@ -61,7 +63,10 @@ class Barangio_Model extends CI_Model
 					JOIN jenis AS j ON (b.kode_jenis = j.kode_jenis)
 					JOIN satuan AS s ON (b.kode_satuan = s.kode_satuan)
 					JOIN barang_io AS bio on (bio.id_barang = b.id)
-					WHERE bio.tanggal BETWEEN '$min' AND '$max'";
+					";
+		if ($min != '' && $max != ''){
+			$query = $query . " WHERE bio.tanggal BETWEEN '$min' AND '$max'";
+		}
 
 		if ($type == null) {
 			$query = "SELECT DISTINCT
@@ -78,7 +83,10 @@ class Barangio_Model extends CI_Model
 			ON b.kode_jenis = j.kode_jenis
 			JOIN satuan AS s
 			ON b.kode_satuan = s.kode_satuan
-			WHERE bio.tanggal BETWEEN '$min' AND '$max'";
+			";
+			if ($min != '' && $max != ''){
+				$query = $query . " WHERE DATE(bio.tanggal) BETWEEN '$min' AND '$max'";
+			}
 		}
 		if ($type != null) {
 			$query = $query . " AND tipe = '$type'";

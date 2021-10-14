@@ -23,8 +23,11 @@
 					<div class="box">
 						<div class="box-header">
 							<h3 class="box-title">Stok Barang</h3>
-							<a href="<?php echo base_url('/barangio/print') ?>?<?php echo (isset($_GET['min']) && isset($_GET['max']) ? "min=" . $_GET['min'] .  "&max=" . $_GET['max'] : '') ?>" class="print-btn btn btn-primary btn-sm pull-right"><i class="fa fa-print"></i>
+							<a href="<?php echo base_url('/barangio/print') ?><?php echo (isset($_GET['min']) && isset($_GET['max']) ? "?min=" . $_GET['min'] .  "&max=" . $_GET['max'] : '') ?>" class="print-btn btn btn-primary btn-sm pull-right"><i class="fa fa-print"></i>
 								<span>Cetak</span>
+							</a>
+							<a href="<?php echo base_url('/Stok_barang') ?>" class="print-btn btn btn-primary btn-sm pull-right"><i class="fa fa-print"></i>
+								<span>Bersihkan Filter</span>
 							</a>
 						</div>
 						<!-- /.box-header -->
@@ -59,8 +62,8 @@
 										$i = 1;
 										foreach ($data as $key => $row) : ?>
 											<tr>
-												<td><?= $i++; ?></td>
-												<td><?= ($row['id'] == ($key != 0 ? $data[$key - 1]['id'] : 0) ? '' : $row['id']) ?></td>
+												<td><?= $key + 1; ?></td>
+												<td><?= $row['id'] ?></td>
 												<td><?= $row['nama_barang']; ?></td>
 												<td><?= $row['merk_barang']; ?></td>
 												<td><?= $row['stok_barang']; ?></td>
@@ -145,22 +148,22 @@
 	var minDate, maxDate;
 
 	// Custom filtering function which will search data in column four between two values
-	$.fn.dataTable.ext.search.push(
-		function(settings, data, dataIndex) {
-			var min = minDate.val();
-			var max = maxDate.val();
-			var date = new Date(data[6]);
-			if (
-				(min === null && max === null) ||
-				(min === null && date <= max) ||
-				(min <= date && max === null) ||
-				(min <= date && date <= max)
-			) {
-				return true;
-			}
-			return false;
-		}
-	);
+	// $.fn.dataTable.ext.search.push(
+	// 	function(settings, data, dataIndex) {
+	// 		var min = minDate.val();
+	// 		var max = maxDate.val();
+	// 		var date = new Date(data[6]);
+	// 		if (
+	// 			(min === null && max === null) ||
+	// 			(min === null && date <= max) ||
+	// 			(min <= date && max === null) ||
+	// 			(min <= date && date <= max)
+	// 		) {
+	// 			return true;
+	// 		}
+	// 		return false;
+	// 	}
+	// );
 
 	$(document).ready(function() {
 		const queryString = window.location.search;
@@ -193,7 +196,7 @@
 			max = $(this).val();
 		});
 		$('#min, #max').on('change', function() {
-			table.draw();
+			// table.draw();
 			let type = '<?php echo (isset($_GET['type']) ? "type=" . $_GET['type'] . "&" : '') ?>';
 			if (max){
 				min = moment(min,'YYYY-MM-DD').add(1,'days').format('YYYY-MM-DD');

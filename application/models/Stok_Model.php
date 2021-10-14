@@ -14,8 +14,10 @@ class Stok_Model extends CI_Model
 	{
 		$min = $_GET['min'] ?? '';
 		$max = $_GET['max'] ?? '';
-		$min = date('Y-m-d',(strtotime ( '-1 day' , strtotime ($min) ) ));
-		$max = date('Y-m-d',(strtotime ( '-1 day' , strtotime ($max) ) ));
+if ($min != '' && $max != ''){
+			$min = date('Y-m-d',(strtotime ( '-1 day' , strtotime ($min) ) ));
+			$max = date('Y-m-d',(strtotime ( '-1 day' , strtotime ($max) ) ));
+		}
 		$query = "SELECT DISTINCT
 		b.id,
 		b.nama_barang,
