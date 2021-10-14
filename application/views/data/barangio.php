@@ -25,7 +25,7 @@
 							<a href="/barangio/tambah_data" class="btn btn-success btn-sm pull-right"><i class="fa fa-plus">
 									<span><b>Tambah Data</b></span>
 								</i></a>
-							<a href="/barangio/print" class="btn btn-success btn-sm pull-right print-btn"><i class="fa fa-print">
+							<a href="<?php echo base_url('/barangio/print') ?>?type=<?php echo $_GET['type'] ?>&<?php echo (isset($_GET['min']) && isset($_GET['max']) ? "min=" . $_GET['min'] .  "&max=" . $_GET['max'] : '') ?>" class="btn btn-success btn-sm pull-right print-btn"><i class="fa fa-print">
 									<span><b>Cetak</b></span>
 								</i></a>
 						</div>
@@ -141,23 +141,23 @@
 	var minDate, maxDate;
 
 	// Custom filtering function which will search data in column four between two values
-	$.fn.dataTable.ext.search.push(
-		function(settings, data, dataIndex) {
-			var min = minDate.val();
-			var max = maxDate.val();
-			var date = new Date(data[3]);
+	// $.fn.dataTable.ext.search.push(
+	// 	function(settings, data, dataIndex) {
+	// 		var min = minDate.val();
+	// 		var max = maxDate.val();
+	// 		var date = new Date(data[3]);
 
-			if (
-				(min === null && max === null) ||
-				(min === null && date <= max) ||
-				(min <= date && max === null) ||
-				(min <= date && date <= max)
-			) {
-				return true;
-			}
-			return false;
-		}
-	);
+	// 		if (
+	// 			(min === null && max === null) ||
+	// 			(min === null && date <= max) ||
+	// 			(min <= date && max === null) ||
+	// 			(min <= date && date <= max)
+	// 		) {
+	// 			return true;
+	// 		}
+	// 		return false;
+	// 	}
+	// );
 
 	$(document).ready(function() {
 		// Create date inputs
@@ -182,8 +182,10 @@
 		$('#min, #max').on('change', function() {
 			table.draw();
 			let type = '<?php echo (isset($_GET['type']) ? "type=" . $_GET['type'] . "&" : '') ?>';
-			let printUrl = "<?php echo base_url('/barangio/print') ?>?" + type + `min=${minDataDate}&max=${maxDataDate}`
-			$('.print-btn').attr('href', printUrl)
+			let printUrl = "<?php echo base_url('/barangio') ?>?" + type + `min=${minDataDate}&max=${maxDataDate}`;
+			if (maxDataDate){
+				window.location.replace(printUrl);
+			}
 		});
 	});
 </script>

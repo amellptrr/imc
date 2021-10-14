@@ -32,7 +32,7 @@
 					<?php if($title == null): ?>
 					<th>Keterangan</th>
 					<?php endif; ?>
-					<?php if (isset($row['tanggal_masuk']) && isset($row['tanggal_keluar'])) : ?>
+					<?php if (isset($row['tanggal_masuk']) || isset($row['tanggal_keluar'])) : ?>
 					<th>Tanggal Masuk</th>
 					<th>Tanggal Keluar</th>
 					<?php else: ?>
@@ -57,7 +57,7 @@
 							<?php if($title == null): ?>
 							<td><?php echo (isset($row['stok_masuk']) && isset($row['stok_keluar']) ? (($row['stok_masuk'] - $row['stok_keluar']) < 50 ? "Stok Rendah" : "") : ($row['stok_barang'] < 50 ? "Stok Rendah" : "")) ?></td>
 							<?php endif; ?>
-							<?php if (isset($row['tanggal_masuk']) && isset($row['tanggal_keluar'])) : ?>
+							<?php if (isset($row['tanggal_masuk']) || isset($row['tanggal_keluar'])) : ?>
 							<td><?= $row['tanggal_masuk'] ?? "" ?></td>
 							<td><?= $row['tanggal_keluar'] ?? "" ?></td>
 							<?php else: ?>

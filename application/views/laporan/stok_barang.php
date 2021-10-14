@@ -23,7 +23,7 @@
 					<div class="box">
 						<div class="box-header">
 							<h3 class="box-title">Stok Barang</h3>
-							<a href="<?php echo base_url('/barangio/print') ?>" class="print-btn btn btn-primary btn-sm pull-right"><i class="fa fa-print"></i>
+							<a href="<?php echo base_url('/barangio/print') ?>?<?php echo (isset($_GET['min']) && isset($_GET['max']) ? "min=" . $_GET['min'] .  "&max=" . $_GET['max'] : '') ?>" class="print-btn btn btn-primary btn-sm pull-right"><i class="fa fa-print"></i>
 								<span>Cetak</span>
 							</a>
 						</div>
@@ -149,8 +149,7 @@
 		function(settings, data, dataIndex) {
 			var min = minDate.val();
 			var max = maxDate.val();
-			var date = new Date(data[7]);
-
+			var date = new Date(data[6]);
 			if (
 				(min === null && max === null) ||
 				(min === null && date <= max) ||
@@ -186,8 +185,10 @@
 		$('#min, #max').on('change', function() {
 			table.draw();
 			let type = '<?php echo (isset($_GET['type']) ? "type=" . $_GET['type'] . "&" : '') ?>';
-			let printUrl = "<?php echo base_url('/barangio/print') ?>?" + `min=${min}&max=${max}`
-			$('.print-btn').attr('href', printUrl)
+			let printUrl = "<?php echo base_url('/Stok_barang') ?>?" + `min=${min}&max=${max}`
+			if (max){
+				window.location.replace(printUrl);
+			}
 		});
 	});
 </script>

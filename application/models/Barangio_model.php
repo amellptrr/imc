@@ -11,6 +11,8 @@ class Barangio_Model extends CI_Model
 
 	public function getDataBarang($type)
 	{
+		$min = $_GET['min'] ?? '';
+		$max = $_GET['max'] ?? '';
 		$query = "SELECT
 					id,
 					id_barang,
@@ -19,6 +21,10 @@ class Barangio_Model extends CI_Model
 					FROM
 					barang_io
 				  	WHERE tipe = '$type'";
+		if ($min != '' && $max != ''){
+			$query = $query . "	AND barang_io.tanggal BETWEEN '$min' AND '$max'";
+		}
+		
 		return $this->db->query($query)->result_array();
 	}
 
@@ -47,13 +53,13 @@ class Barangio_Model extends CI_Model
 					b.merk_barang,
 					b.stok,
 					b.tanggal,
-					bio.stok AS stok_bio
+					bio.stok AS stok_barang
 					FROM
 					barang as b
 					JOIN jenis AS j ON (b.kode_jenis = j.kode_jenis)
 					JOIN satuan AS s ON (b.kode_satuan = s.kode_satuan)
 					JOIN barang_io AS bio on (bio.id_barang = b.id)
-					WHERE b.tanggal BETWEEN '$min' AND '$max'";
+					WHERE bio.tanggal BETWEEN '$min' AND '$max'";
 
 		if ($type == null) {
 			$query = "SELECT DISTINCT
@@ -70,7 +76,7 @@ class Barangio_Model extends CI_Model
 			ON b.kode_jenis = j.kode_jenis
 			JOIN satuan AS s
 			ON b.kode_satuan = s.kode_satuan
-			WHERE b.tanggal BETWEEN '$min' AND '$max'";
+			WHERE bio.tanggal BETWEEN '$min' AND '$max'";
 		}
 		if ($type != null) {
 			$query = $query . " AND tipe = '$type'";
