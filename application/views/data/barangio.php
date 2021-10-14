@@ -158,8 +158,15 @@
 	// 		return false;
 	// 	}
 	// );
-
 	$(document).ready(function() {
+		const queryString = window.location.search;
+		const parameters = new URLSearchParams(queryString);
+		const minParams = parameters.get('min');
+		const maxParams = parameters.get('max');
+		if (minParams != null && maxParams != null){
+			$('#min').val(minParams);
+			$('#max').val(maxParams);
+		}
 		// Create date inputs
 		minDate = new DateTime($('#min'), {
 			format: 'YYYY-MM-DD'
