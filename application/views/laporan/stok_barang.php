@@ -63,7 +63,7 @@
 												<td><?= ($row['id'] == ($key != 0 ? $data[$key - 1]['id'] : 0) ? '' : $row['id']) ?></td>
 												<td><?= $row['nama_barang']; ?></td>
 												<td><?= $row['merk_barang']; ?></td>
-												<td><?= (isset($row['stok_masuk']) && isset($row['stok_keluar']) ? $row['stok_masuk'] - $row['stok_keluar'] : $row['stok_bio']); ?></td>
+												<td><?= $row['stok_barang']; ?></td>
 												<td><?php echo (isset($row['stok_masuk']) && isset($row['stok_keluar']) ? (($row['stok_masuk'] - $row['stok_keluar']) < 50 ? "Stok Rendah" : "") : ($row['stok_bio'] < 50 ? "Stok Rendah" : "")) ?></td>
 												<td><?= $row['tanggal_masuk'] ?? "" ?></td>
 												<td><?= $row['tanggal_keluar'] ?? "" ?></td>

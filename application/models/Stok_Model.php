@@ -16,10 +16,11 @@ class Stok_Model extends CI_Model
 		b.id,
 		b.nama_barang,
 		b.merk_barang,
-		(SELECT DISTINCT stok FROM barang_io WHERE id_barang = b.id AND tipe = 'masuk' LIMIT 1) AS stok_masuk,
-		(SELECT DISTINCT stok FROM barang_io WHERE id_barang = b.id AND tipe = 'keluar' LIMIT 1) AS stok_keluar,
-		(SELECT DISTINCT tanggal FROM barang_io WHERE id_barang = b.id AND tipe = 'masuk' LIMIT 1) AS tanggal_masuk,
-		(SELECT DISTINCT tanggal FROM barang_io WHERE id_barang = b.id AND tipe = 'keluar' LIMIT 1) AS tanggal_keluar
+		b.stok as stok_barang,
+		(SELECT stok FROM barang_io WHERE id_barang = b.id AND tipe = 'masuk' ORDER BY barang_io.tanggal DESC LIMIT 1) AS stok_masuk,
+		(SELECT stok FROM barang_io WHERE id_barang = b.id AND tipe = 'keluar' ORDER BY barang_io.tanggal DESC LIMIT 1) AS stok_keluar,
+		(SELECT tanggal FROM barang_io WHERE id_barang = b.id AND tipe = 'masuk' ORDER BY barang_io.tanggal DESC LIMIT 1) AS tanggal_masuk,
+		(SELECT tanggal FROM barang_io WHERE id_barang = b.id AND tipe = 'keluar' ORDER BY barang_io.tanggal DESC LIMIT 1) AS tanggal_keluar
 		FROM barang AS b
 		JOIN barang_io AS bio
 		ON b.id = bio.id_barang 
