@@ -53,9 +53,9 @@
 								<td><?= $row['stok_masuk'] ?></td>
 								<td><?= $row['stok_keluar'] ?></td>
 							<?php endif; ?> -->
-							<td><?= $row['stok_barang']; ?></td>
+							<td><?= (isset($row['stok_masuk']) && isset($row['stok_keluar']) ? $row['stok_masuk'] - $row['stok_keluar'] : $row['stok_barang']); ?></td>
 							<?php if($title == null): ?>
-							<td><?php echo ($row['stok_barang'] < 50 ? 'Stok rendah!' : "") ?></td>
+							<td><?php echo (isset($row['stok_masuk']) && isset($row['stok_keluar']) ? (($row['stok_masuk'] - $row['stok_keluar']) < 50 ? "Stok Rendah" : "") : ($row['stok_barang'] < 50 ? "Stok Rendah" : "")) ?></td>
 							<?php endif; ?>
 							<?php if (isset($row['tanggal_masuk']) && isset($row['tanggal_keluar'])) : ?>
 							<td><?= $row['tanggal_masuk'] ?? "" ?></td>
